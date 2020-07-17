@@ -2,12 +2,16 @@ import tkinter as tk
 import tkinter.font as tkfont
 from time import sleep
 
+
 def delete():
 	for widget in overlaybg.winfo_children():
 		widget.destroy()
 
 	for widget in mainbg.winfo_children():
 		widget.destroy()
+
+	question2()
+
 
 
 def right_answer():
