@@ -237,6 +237,8 @@ def endscreen():
 
 root = tk.Tk()
 
+root.title("GUI Quiz")
+
 mainbg = tk.Canvas(root, height = 450, width = 800, bg = "Blue")
 mainbg.pack()
 
