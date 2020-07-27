@@ -51,6 +51,9 @@ def delete():
 	if nextclick == 4:
 		question5()
 
+	if nextclick == 5:
+		endscreen()
+
 def right_answer():
 	global result
 
@@ -71,8 +74,17 @@ def wrong_answer():
 	nextbutton = tk.Button(mainbg, text = "Next", fg = "Black", bg = "White", command = delete)
 	nextbutton.place(relwidth = 0.1, relx = 0.45, rely = 0.9)
 
+def close():
+	root.destroy()
 
+def restart():
+	global nextclick 
+	global result
 
+	result = 0
+	nextclick = -1
+
+	delete()
 
 
 
@@ -166,8 +178,8 @@ def question4():
 
 def question5():
 	fontsize = tkfont.Font(size = 20)
-	q1 = tk.Label(overlaybg, text = "Which galaxy is likely to collide with our galaxy in the future?", fg = "Black", bg = "White", font = fontsize)
-	q1.place(relx = 0.03, rely = 0.1)
+	q1 = tk.Label(overlaybg, text = "Which galaxy is likely to collide with our galaxy \n in the future?", fg = "Black", bg = "White", font = fontsize)
+	q1.place(relx = 0.01, rely = 0.1)
 
 
 	option1 = tk.Button(overlaybg, text = "a) Milky Way", fg = "Black", bg = "Grey", command = wrong_answer)
@@ -180,8 +192,27 @@ def question5():
 	option3.place(relwidth = 0.2, relx = 0.4, rely = 0.5)
 	option4.place(relwidth = 0.2, relx = 0.4, rely = 0.6)
 
+def endscreen():
+	global result
+	result = str(result)
 
+	fontsize1 = tkfont.Font(size = 30)
+	congratulation = tk.Label(overlaybg, text = "CONGRATULATIONS!!!", fg = "Green", bg = "White", font = fontsize1)
+	congratulation.place(relx = 0.15, rely = 0.1)
 
+	fontsize2 = tkfont.Font(size = 20)
+	end = tk.Label(overlaybg, text = "You have completed the quiz", fg = "Red", bg = "White", font = fontsize2)
+	end.place(relx = 0.2, rely = 0.4)
+
+	fontsize3 = tkfont.Font(size = 15)
+	result = tk.Label(overlaybg, text = "You answered " + result + " out of 5 questions right", fg = "Green", bg = "White", font = fontsize3)
+	result.place(relx = 0.2, rely = 0.6)
+
+	exitbutton = tk.Button(mainbg, text = "Click to Close", fg = "White", bg = "Red", command = close)
+	exitbutton.place(relwidth = 0.15, relx = 0.35, rely = 0.9)
+
+	restartbutton = tk.Button(mainbg, text = "Retry quiz", fg = "Black", bg = "Green", command = restart)
+	restartbutton.place(relwidth = 0.15, relx =0.5, rely = 0.9)
 
 
 
@@ -205,6 +236,8 @@ def question5():
 
 
 root = tk.Tk()
+
+root.title("GUI Quiz")
 
 mainbg = tk.Canvas(root, height = 450, width = 800, bg = "Blue")
 mainbg.pack()
